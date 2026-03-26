@@ -1,0 +1,8 @@
+# Windows artifacts
+nul
+
+# IDE
+.idea/
+
+# Environment
+.env

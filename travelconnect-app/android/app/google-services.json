@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "409369756105",
+    "project_id": "travelconect",
+    "storage_bucket": "travelconect.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409369756105:android:1dd3b900380990ed6fe818",
+        "android_client_info": {
+          "package_name": "com.travelconnect.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtH5GJNlb61v-qpU9XTLlJKwNn08RNwPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

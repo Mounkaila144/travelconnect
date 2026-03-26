@@ -1,0 +1,30 @@
+{
+  "app_name": "TravelConnect",
+  "app_name_ja": "トラベルコネクト",
+  "subtitle_ja": "旅行者と地元の人を繋ぐQ&A",
+  "bundle_id": "com.travelconnect.app",
+  "sku": "TRAVELCONNECT001",
+  "primary_language": "ja",
+  "primary_category": "Travel",
+  "secondary_category": "Social Networking",
+  "age_rating": "12+",
+  "price": "Free",
+  "availability": ["Japan"],
+  "version": "1.0.0",
+  "build": 1,
+  "minimum_ios_version": "13.0",
+  "privacy_policy_url": "https://travelconnect.app/privacy",
+  "support_url": "https://travelconnect.app/support",
+  "marketing_url": "https://travelconnect.app",
+  "keywords_ja": "旅行,質問,回答,地図,トラベル,コミュニティ,サポート,観光,ガイド",
+  "promotional_text_ja": "旅行中の疑問をその場で解決！地元の人と繋がる新しい旅のカタチ",
+  "description_ja": "TravelConnectは、旅行中の疑問をその場で解決できる位置情報ベースのQ&Aプラットフォームです。\n\n【主な機能】\n• 地図上で質問を投稿・閲覧\n• 旅行者と地元サポーターのマッチング\n• 信頼スコアシステムで回答の質を保証\n• リアルタイム通知で素早い回答\n• Googleアカウントでかんたんログイン\n\n【こんな時に便利】\n• レストラン選びに迷ったとき\n• 道に迷ったとき\n• 現地のイベント情報を知りたいとき\n• 穴場スポットを探しているとき\n• 緊急時のサポートが必要なとき\n\n【地元サポーターになろう】\nあなたの地元の知識を活かして、旅行者をサポートしませんか？\n回答することで信頼スコアが上がり、コミュニティへの貢献度が可視化されます。\n\n【安心・安全】\n• 不適切なコンテンツの報告機能\n• 管理者による24時間監視\n• プライバシー保護を最優先\n\n日本全国の旅を、もっと楽しく、もっと安心に。\nTravelConnectで、旅行者と地元の人が繋がる新しい体験を。",
+  "whats_new_ja": "TravelConnectの初回リリースです！\n\n✨ 新機能\n• 地図上で質問・回答\n• Googleアカウントでかんたんログイン\n• 信頼スコアシステム\n• プッシュ通知\n• プロフィールカスタマイズ\n\n旅をもっと楽しく、もっと安心に。",
+  "review_notes": "App requires Google account for login. All features accessible after login. Sample data is pre-populated on the map for testing. Location access is required for the core map functionality.",
+  "screenshots_required": {
+    "6.7_inch": "1290x2796px (iPhone 15 Pro Max)",
+    "6.5_inch": "1284x2778px (iPhone 11 Pro Max)",
+    "5.5_inch": "1242x2208px (iPhone 8 Plus)"
+  },
+  "app_icon": "1024x1024px PNG, no transparency, no rounded corners"
+}

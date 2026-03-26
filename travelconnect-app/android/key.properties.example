@@ -1,0 +1,13 @@
+# Android Keystore Configuration
+# Copy this file to key.properties and fill in your values
+# NEVER commit key.properties to version control
+#
+# Generate keystore:
+#   keytool -genkey -v -keystore upload-keystore.jks \
+#     -keyalg RSA -keysize 2048 -validity 10000 \
+#     -alias travelconnect
+
+storePassword=YOUR_KEYSTORE_PASSWORD
+keyPassword=YOUR_KEY_PASSWORD
+keyAlias=travelconnect
+storeFile=/path/to/upload-keystore.jks

@@ -1,0 +1,27 @@
+# TravelConnect API - Logrotate Configuration
+# Copy to /etc/logrotate.d/travelconnect
+
+/var/www/travelconnect-api/storage/logs/*.log {
+    daily
+    missingok
+    rotate 14
+    compress
+    delaycompress
+    notifempty
+    create 0640 www-data www-data
+    sharedscripts
+}
+
+/var/log/nginx/travelconnect-*.log {
+    daily
+    missingok
+    rotate 14
+    compress
+    delaycompress
+    notifempty
+    create 0640 www-data adm
+    sharedscripts
+    postrotate
+        [ -f /var/run/nginx.pid ] && kill -USR1 $(cat /var/run/nginx.pid)
+    endscript
+}

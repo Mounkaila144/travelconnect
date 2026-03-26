@@ -1,0 +1,51 @@
+{
+  "app_name": "TravelConnect - 旅行Q&Aアプリ",
+  "application_id": "com.travelconnect.app",
+  "default_language": "ja",
+  "app_category": "Travel & Local",
+  "content_rating": "IARC 12+",
+  "price": "Free",
+  "availability": ["Japan"],
+  "version_name": "1.0.0",
+  "version_code": 1,
+  "minimum_sdk": 21,
+  "target_sdk": 34,
+  "privacy_policy_url": "https://travelconnect.app/privacy",
+  "support_email": "support@travelconnect.app",
+  "website": "https://travelconnect.app",
+  "short_description_ja": "旅行中の疑問を地元の人に質問できるQ&Aプラットフォーム",
+  "full_description_ja": "TravelConnectは、旅行中の疑問をその場で解決できる位置情報ベースのQ&Aプラットフォームです。\n\n【主な機能】\n✓ 地図上で質問を投稿・閲覧\n✓ 旅行者と地元サポーターのマッチング\n✓ 信頼スコアシステムで回答の質を保証\n✓ リアルタイム通知で素早い回答\n✓ Googleアカウントでかんたんログイン\n\n【こんな時に便利】\n• レストラン選びに迷ったとき\n• 道に迷ったとき\n• 現地のイベント情報を知りたいとき\n• 穴場スポットを探しているとき\n• 緊急時のサポートが必要なとき\n\n【地元サポーターになろう】\nあなたの地元の知識を活かして、旅行者をサポートしませんか？\n回答することで信頼スコアが上がり、コミュニティへの貢献度が可視化されます。\n\n【安心・安全】\n• 不適切なコンテンツの報告機能\n• 管理者による24時間監視\n• プライバシー保護を最優先\n\n【使い方】\n1. Googleアカウントでログイン\n2. 地図上で近くの質問を閲覧\n3. 気になる質問に回答、または新しい質問を投稿\n4. 役立った回答に評価を付けて、信頼スコアに貢献\n\n【対応地域】\n日本全国で利用可能\n\n【サポート】\nご質問やお問い合わせは support@travelconnect.app までご連絡ください。\n\n日本全国の旅を、もっと楽しく、もっと安心に。\nTravelConnectで、旅行者と地元の人が繋がる新しい体験を。",
+  "release_notes_ja": "初回リリース - バージョン 1.0.0\n\n✨ 新機能\n• 地図上で質問・回答\n• Googleアカウントでかんたんログイン\n• 信頼スコアシステム\n• プッシュ通知\n• プロフィールカスタマイズ\n\n旅をもっと楽しく、もっと安心に。\nフィードバックをお待ちしています！",
+  "feature_graphic": "1024x500px PNG or JPEG",
+  "screenshots_required": {
+    "phone": "1080x1920px portrait, minimum 2, maximum 8",
+    "7_inch_tablet": "1920x1200px (optional)",
+    "10_inch_tablet": "2560x1600px (optional)"
+  },
+  "app_icon": "512x512px PNG with transparency",
+  "content_rating_questionnaire": {
+    "violence": false,
+    "sexual_content": false,
+    "profanity": "possible_user_generated",
+    "drugs_alcohol": false,
+    "gambling": false,
+    "user_interaction": true,
+    "shares_location": true,
+    "unrestricted_internet": true
+  },
+  "data_safety": {
+    "location_approximate": { "collected": true, "shared": false, "purpose": "App functionality" },
+    "personal_info_email": { "collected": true, "shared": false, "purpose": "Account management" },
+    "personal_info_name": { "collected": true, "shared": false, "purpose": "App functionality" },
+    "photos": { "collected": true, "optional": true, "shared": false, "purpose": "App functionality" },
+    "user_content": { "collected": true, "shared": true, "purpose": "App functionality" },
+    "device_ids": { "collected": true, "shared": false, "purpose": "Analytics" },
+    "encrypted_in_transit": true,
+    "can_request_deletion": true
+  },
+  "staged_rollout": {
+    "phase_1": "20% of users in Japan",
+    "phase_2": "50% if crash-free rate > 95%",
+    "phase_3": "100% full rollout"
+  }
+}
