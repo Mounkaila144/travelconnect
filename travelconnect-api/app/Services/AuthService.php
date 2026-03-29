@@ -127,7 +127,7 @@ class AuthService
     private function findOrCreateUser(
         string $provider,
         string $providerId,
-        string $email,
+        ?string $email,
         string $name,
         ?string $avatarUrl
     ): array {
@@ -138,11 +138,13 @@ class AuthService
             ->first();
 
         if (!$user) {
-            $existingUser = User::where('email', $email)->first();
-            if ($existingUser) {
-                throw new \InvalidArgumentException(
-                    'Un compte existe déjà avec cet email via un autre fournisseur'
-                );
+            if ($email) {
+                $existingUser = User::where('email', $email)->first();
+                if ($existingUser) {
+                    throw new \InvalidArgumentException(
+                        'Un compte existe déjà avec cet email via un autre fournisseur'
+                    );
+                }
             }
 
             $user = User::create([

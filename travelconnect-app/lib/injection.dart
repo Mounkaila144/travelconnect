@@ -72,10 +72,7 @@ Future<void> configureDependencies() async {
 
   // External
   sl.registerLazySingleton<Dio>(() {
-    const envUrl = String.fromEnvironment('API_BASE_URL');
-    final baseUrl = envUrl.isNotEmpty
-        ? envUrl
-        : (kIsWeb ? 'http://localhost:8000/api' : 'http://192.168.1.216:8000/api');
+    const baseUrl = 'https://travelconnect.ptrniger.com/api';
 
     final dio = Dio(BaseOptions(
       baseUrl: baseUrl,

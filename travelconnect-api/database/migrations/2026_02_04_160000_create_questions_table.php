@@ -24,8 +24,8 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Add spatial POINT column and spatial index
-        DB::statement('ALTER TABLE questions ADD location POINT NOT NULL SRID 4326 AFTER longitude');
+        // Add spatial POINT column and spatial index (MariaDB compatible)
+        DB::statement('ALTER TABLE questions ADD location POINT NOT NULL AFTER longitude');
         DB::statement('CREATE SPATIAL INDEX idx_location ON questions (location)');
     }
 
