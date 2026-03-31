@@ -51,7 +51,7 @@ class QuestionService
             'latitude' => $data['latitude'],
             'longitude' => $data['longitude'],
             'location' => DB::raw(
-                "ST_SRID(POINT({$data['longitude']}, {$data['latitude']}), 4326)"
+                "POINT({$data['longitude']}, {$data['latitude']})"
             ),
             'location_name' => $locationData['formatted_address'],
             'city' => $locationData['city'],
