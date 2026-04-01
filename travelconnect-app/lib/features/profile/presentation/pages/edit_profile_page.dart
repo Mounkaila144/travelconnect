@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelconnect_app/l10n/app_localizations.dart';
 
+import '../../../../core/constants/countries.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/image_utils.dart';
@@ -11,6 +12,7 @@ import '../bloc/profile_bloc.dart';
 import '../bloc/profile_event.dart';
 import '../bloc/profile_state.dart';
 import '../widgets/avatar_picker.dart';
+import '../widgets/country_picker.dart';
 import '../widgets/user_type_selector.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -34,23 +36,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   List<String> _selectedLanguages = [];
   List<String> _selectedInterests = [];
 
-  static const List<Map<String, String>> _countries = [
-    {'code': 'JP', 'name': 'Japon'},
-    {'code': 'US', 'name': 'États-Unis'},
-    {'code': 'FR', 'name': 'France'},
-    {'code': 'GB', 'name': 'Royaume-Uni'},
-    {'code': 'DE', 'name': 'Allemagne'},
-    {'code': 'ES', 'name': 'Espagne'},
-    {'code': 'IT', 'name': 'Italie'},
-    {'code': 'CN', 'name': 'Chine'},
-    {'code': 'KR', 'name': 'Corée du Sud'},
-    {'code': 'TH', 'name': 'Thaïlande'},
-    {'code': 'AU', 'name': 'Australie'},
-    {'code': 'CA', 'name': 'Canada'},
-    {'code': 'BR', 'name': 'Brésil'},
-    {'code': 'IN', 'name': 'Inde'},
-    {'code': 'MX', 'name': 'Mexique'},
-  ];
+  static const List<Map<String, String>> _countries = kCountries;
 
   static const List<Map<String, String>> _availableLanguages = [
     {'code': 'ja', 'name': 'Japonais', 'flag': '🇯🇵'},
@@ -235,24 +221,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       style: theme.textTheme.titleMedium,
                     ),
                     const SizedBox(height: AppSpacing.sm),
-                    DropdownButtonFormField<String>(
+                    CountryPickerFormField(
                       value: _countries.any((c) => c['code'] == _selectedCountry)
                           ? _selectedCountry
                           : 'JP',
+                      onChanged: (value) {
+                        setState(() => _selectedCountry = value);
+                      },
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.location_on),
                       ),
-                      items: _countries.map((c) {
-                        return DropdownMenuItem(
-                          value: c['code'],
-                          child: Text(c['name']!),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        if (value != null) {
-                          setState(() => _selectedCountry = value);
-                        }
-                      },
                     ),
                     const SizedBox(height: AppSpacing.lg),
                   ] else ...[
@@ -262,24 +240,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       style: theme.textTheme.titleMedium,
                     ),
                     const SizedBox(height: AppSpacing.sm),
-                    DropdownButtonFormField<String>(
+                    CountryPickerFormField(
                       value: _countries.any((c) => c['code'] == _selectedCountry)
                           ? _selectedCountry
                           : 'JP',
+                      onChanged: (value) {
+                        setState(() => _selectedCountry = value);
+                      },
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.public),
                       ),
-                      items: _countries.map((c) {
-                        return DropdownMenuItem(
-                          value: c['code'],
-                          child: Text(c['name']!),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        if (value != null) {
-                          setState(() => _selectedCountry = value);
-                        }
-                      },
                     ),
                     const SizedBox(height: AppSpacing.lg),
                   ],

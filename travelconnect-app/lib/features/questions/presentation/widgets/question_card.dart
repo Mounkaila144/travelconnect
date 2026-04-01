@@ -80,9 +80,13 @@ class QuestionCard extends StatelessWidget {
                         : null,
                   ),
                   const SizedBox(width: AppSpacing.sm),
-                  Text(
-                    question.user?.name ?? 'Anonyme',
-                    style: theme.textTheme.bodyMedium,
+                  Flexible(
+                    child: Text(
+                      question.user?.name ?? 'Anonyme',
+                      style: theme.textTheme.bodyMedium,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   if (question.user?.userType == 'local_supporter') ...[
                     const SizedBox(width: AppSpacing.xs),
