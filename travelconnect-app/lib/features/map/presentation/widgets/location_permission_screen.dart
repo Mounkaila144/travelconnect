@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../l10n/app_localizations.dart';
 
 import '../bloc/map_bloc.dart';
 import '../bloc/map_event.dart';
@@ -15,6 +16,8 @@ class LocationPermissionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -37,7 +40,7 @@ class LocationPermissionScreen extends StatelessWidget {
               ),
               const SizedBox(height: AppSpacing.xl),
               Text(
-                _title,
+                _title(l10n),
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -45,7 +48,7 @@ class LocationPermissionScreen extends StatelessWidget {
               ),
               const SizedBox(height: AppSpacing.lg),
               Text(
-                _description,
+                _description(l10n),
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: AppColors.textSecondary,
                     ),
@@ -56,7 +59,7 @@ class LocationPermissionScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () => _onPrimaryAction(context),
-                  child: Text(_primaryButtonText),
+                  child: Text(_primaryButtonText(l10n)),
                 ),
               ),
               if (reason == LocationPermissionRequiredReason.deniedPermanently ||
@@ -68,7 +71,7 @@ class LocationPermissionScreen extends StatelessWidget {
                     onPressed: () {
                       context.read<MapBloc>().add(const InitializeMap());
                     },
-                    child: const Text('Réessayer'),
+                    child: Text(l10n.location_retry),
                   ),
                 ),
               ],
@@ -90,39 +93,35 @@ class LocationPermissionScreen extends StatelessWidget {
     }
   }
 
-  String get _title {
+  String _title(AppLocalizations l10n) {
     switch (reason) {
       case LocationPermissionRequiredReason.serviceDisabled:
-        return 'Service de localisation désactivé';
+        return l10n.location_serviceDisabledTitle;
       case LocationPermissionRequiredReason.deniedPermanently:
-        return 'Localisation requise';
       case LocationPermissionRequiredReason.denied:
-        return 'Localisation requise';
+        return l10n.location_requiredTitle;
     }
   }
 
-  String get _description {
+  String _description(AppLocalizations l10n) {
     switch (reason) {
       case LocationPermissionRequiredReason.serviceDisabled:
-        return 'TravelConnect a besoin de votre localisation pour vous montrer les questions autour de vous. '
-            'Veuillez activer le service de localisation de votre appareil.';
+        return l10n.location_serviceDisabledDesc;
       case LocationPermissionRequiredReason.deniedPermanently:
-        return 'TravelConnect a besoin de votre localisation pour fonctionner. '
-            'Veuillez autoriser l\'accès à la localisation dans les paramètres de l\'application.';
+        return l10n.location_deniedPermanentlyDesc;
       case LocationPermissionRequiredReason.denied:
-        return 'TravelConnect a besoin de votre localisation pour vous montrer les questions autour de vous. '
-            'Veuillez autoriser l\'accès à votre position.';
+        return l10n.location_deniedDesc;
     }
   }
 
-  String get _primaryButtonText {
+  String _primaryButtonText(AppLocalizations l10n) {
     switch (reason) {
       case LocationPermissionRequiredReason.serviceDisabled:
-        return 'Activer la localisation';
+        return l10n.location_enableLocation;
       case LocationPermissionRequiredReason.deniedPermanently:
-        return 'Ouvrir les paramètres';
+        return l10n.location_openSettings;
       case LocationPermissionRequiredReason.denied:
-        return 'Autoriser la localisation';
+        return l10n.location_allowLocation;
     }
   }
 

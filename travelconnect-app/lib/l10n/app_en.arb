@@ -219,6 +219,16 @@
   "auth_continueWithGoogle": "Continue with Google",
   "auth_continueWithApple": "Continue with Apple",
 
+  "location_serviceDisabledTitle": "Location service disabled",
+  "location_serviceDisabledDesc": "TravelConnect needs your location to show questions around you. Please enable the location service on your device.",
+  "location_requiredTitle": "Location required",
+  "location_deniedPermanentlyDesc": "TravelConnect needs your location to work. Please allow location access in the app settings.",
+  "location_deniedDesc": "TravelConnect needs your location to show questions around you. Please allow access to your location.",
+  "location_enableLocation": "Enable location",
+  "location_openSettings": "Open settings",
+  "location_allowLocation": "Allow location",
+  "location_retry": "Retry",
+
   "common_cancel": "Cancel",
   "common_save": "Save",
   "common_retry": "Retry",

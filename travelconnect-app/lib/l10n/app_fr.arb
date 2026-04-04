@@ -244,6 +244,16 @@
   "auth_continueWithGoogle": "Continuer avec Google",
   "auth_continueWithApple": "Continuer avec Apple",
 
+  "location_serviceDisabledTitle": "Service de localisation désactivé",
+  "location_serviceDisabledDesc": "TravelConnect a besoin de votre localisation pour vous montrer les questions autour de vous. Veuillez activer le service de localisation de votre appareil.",
+  "location_requiredTitle": "Localisation requise",
+  "location_deniedPermanentlyDesc": "TravelConnect a besoin de votre localisation pour fonctionner. Veuillez autoriser l'accès à la localisation dans les paramètres de l'application.",
+  "location_deniedDesc": "TravelConnect a besoin de votre localisation pour vous montrer les questions autour de vous. Veuillez autoriser l'accès à votre position.",
+  "location_enableLocation": "Activer la localisation",
+  "location_openSettings": "Ouvrir les paramètres",
+  "location_allowLocation": "Autoriser la localisation",
+  "location_retry": "Réessayer",
+
   "common_cancel": "Annuler",
   "common_save": "Enregistrer",
   "common_retry": "Réessayer",

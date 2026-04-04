@@ -30,13 +30,13 @@ class QuestionRepository
                 'created_at', 'updated_at',
                 DB::raw("ST_Distance_Sphere(
                     location,
-                    ST_SRID(POINT(?, ?), 4326)
+                    POINT(?, ?)
                 ) as distance_meters")
             ])
             ->addBinding([$longitude, $latitude], 'select')
             ->whereRaw("ST_Distance_Sphere(
                 location,
-                ST_SRID(POINT(?, ?), 4326)
+                POINT(?, ?)
             ) <= ?", [$longitude, $latitude, $radiusMeters])
             ->where('is_deleted', false)
             ->with(['user:id,name,avatar_url,user_type,trust_score'])

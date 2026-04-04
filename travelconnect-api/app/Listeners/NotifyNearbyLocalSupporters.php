@@ -118,8 +118,8 @@ class NotifyNearbyLocalSupporters
             ->whereNotNull('notification_zone_radius')
             ->whereRaw(
                 "ST_Distance_Sphere(
-                    ST_SRID(POINT(notification_zone_lng, notification_zone_lat), 4326),
-                    ST_SRID(POINT(?, ?), 4326)
+                    POINT(notification_zone_lng, notification_zone_lat),
+                    POINT(?, ?)
                 ) <= notification_zone_radius * 1000",
                 [$longitude, $latitude]
             )
