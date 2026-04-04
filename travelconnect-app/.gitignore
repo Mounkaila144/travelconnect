@@ -1,3 +1,6 @@
+# Windows reserved files
+nul
+
 # Miscellaneous
 *.class
 *.log

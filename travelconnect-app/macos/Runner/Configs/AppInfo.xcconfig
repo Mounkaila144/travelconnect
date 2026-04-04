@@ -8,7 +8,7 @@
 PRODUCT_NAME = travelconnect_app
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.travelconnectApp
+PRODUCT_BUNDLE_IDENTIFIER = com.travelconnect.app
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2026 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2026 TravelConnect. All rights reserved.
