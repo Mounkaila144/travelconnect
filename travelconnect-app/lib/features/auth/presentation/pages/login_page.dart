@@ -103,28 +103,9 @@ class LoginPage extends StatelessWidget {
                       return Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SocialLoginButton(
-                            label: l10n.auth_continueWithGoogle,
-                            isLoading: isLoading,
-                            icon: Image.network(
-                              'https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg',
-                              width: 24,
-                              height: 24,
-                              errorBuilder: (context, error, stackTrace) {
-                                return const Icon(Icons.g_mobiledata,
-                                    size: 24);
-                              },
-                            ),
-                            onPressed: () {
-                              context.read<AuthBloc>().add(
-                                    const SignInWithGoogleRequested(),
-                                  );
-                            },
-                          ),
                           if (!kIsWeb &&
                               defaultTargetPlatform ==
                                   TargetPlatform.iOS) ...[
-                            const SizedBox(height: AppSpacing.lg),
                             SizedBox(
                               width: double.infinity,
                               height: 56,
@@ -139,6 +120,25 @@ class LoginPage extends StatelessWidget {
                                             );
                                       },
                               ),
+                            ),
+                          ] else ...[
+                            SocialLoginButton(
+                              label: l10n.auth_continueWithGoogle,
+                              isLoading: isLoading,
+                              icon: Image.network(
+                                'https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg',
+                                width: 24,
+                                height: 24,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(Icons.g_mobiledata,
+                                      size: 24);
+                                },
+                              ),
+                              onPressed: () {
+                                context.read<AuthBloc>().add(
+                                      const SignInWithGoogleRequested(),
+                                    );
+                              },
                             ),
                           ],
                         ],
