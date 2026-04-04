@@ -1,0 +1,3 @@
+"NSLocationWhenInUseUsageDescription" = "現在地周辺の質問を表示するために位置情報を使用します。";
+"NSPhotoLibraryUsageDescription" = "プロフィール写真をアップロードするために写真へのアクセスが必要です。";
+"NSCameraUsageDescription" = "プロフィール写真を撮影するためにカメラへのアクセスが必要です。";

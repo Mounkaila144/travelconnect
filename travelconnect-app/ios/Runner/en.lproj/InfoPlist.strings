@@ -1,0 +1,3 @@
+"NSLocationWhenInUseUsageDescription" = "TravelConnect uses your location to show questions around you.";
+"NSPhotoLibraryUsageDescription" = "Access to your photos is required to upload a profile picture.";
+"NSCameraUsageDescription" = "Camera access is required to take a profile picture.";

@@ -56,13 +56,33 @@ class AuthService
         string $authorizationCode,
         ?array $fullName = null
     ): array {
+        Log::info('Apple auth: starting', [
+            'token_length' => strlen($identityToken),
+            'token_preview' => substr($identityToken, 0, 50) . '...',
+            'authorization_code_length' => strlen($authorizationCode),
+            'full_name' => $fullName,
+            'client_id' => config('services.apple.client_id'),
+            'team_id' => config('services.apple.team_id'),
+            'key_id' => config('services.apple.key_id'),
+            'redirect' => config('services.apple.redirect'),
+            'private_key_length' => strlen(config('services.apple.private_key') ?? ''),
+        ]);
+
         try {
             $appleUser = Socialite::driver('apple')
                 ->stateless()
                 ->userFromToken($identityToken);
+
+            Log::info('Apple auth: Socialite user resolved', [
+                'apple_id' => $appleUser->getId(),
+                'email' => $appleUser->getEmail(),
+                'name' => $appleUser->getName(),
+            ]);
         } catch (\Exception $e) {
-            Log::warning('Apple token validation failed', [
+            Log::error('Apple token validation failed', [
                 'error' => $e->getMessage(),
+                'exception_class' => get_class($e),
+                'trace' => $e->getTraceAsString(),
             ]);
             throw new \InvalidArgumentException('Invalid Apple identity token');
         }

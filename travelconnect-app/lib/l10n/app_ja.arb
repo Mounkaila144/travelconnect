@@ -244,6 +244,16 @@
   "auth_continueWithGoogle": "Googleで続ける",
   "auth_continueWithApple": "Appleで続ける",
 
+  "location_serviceDisabledTitle": "位置情報サービスが無効です",
+  "location_serviceDisabledDesc": "TravelConnectは周辺の質問を表示するために位置情報が必要です。デバイスの位置情報サービスを有効にしてください。",
+  "location_requiredTitle": "位置情報が必要です",
+  "location_deniedPermanentlyDesc": "TravelConnectを使用するには位置情報が必要です。アプリの設定で位置情報へのアクセスを許可してください。",
+  "location_deniedDesc": "TravelConnectは周辺の質問を表示するために位置情報が必要です。位置情報へのアクセスを許可してください。",
+  "location_enableLocation": "位置情報を有効にする",
+  "location_openSettings": "設定を開く",
+  "location_allowLocation": "位置情報を許可する",
+  "location_retry": "再試行",
+
   "common_cancel": "キャンセル",
   "common_save": "保存",
   "common_retry": "再試行",
