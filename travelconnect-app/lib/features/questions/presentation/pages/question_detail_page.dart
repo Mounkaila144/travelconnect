@@ -141,7 +141,7 @@ class QuestionDetailPage extends StatelessWidget {
   }
 }
 
-class _QuestionDetailContent extends StatelessWidget {
+class _QuestionDetailContent extends StatefulWidget {
   final Question question;
   final bool isAnswerInputVisible;
   final bool isSubmittingAnswer;
@@ -155,45 +155,87 @@ class _QuestionDetailContent extends StatelessWidget {
   });
 
   @override
+  State<_QuestionDetailContent> createState() => _QuestionDetailContentState();
+}
+
+class _QuestionDetailContentState extends State<_QuestionDetailContent> {
+  final _answerInputKey = GlobalKey();
+  final _scrollController = ScrollController();
+
+  @override
+  void didUpdateWidget(covariant _QuestionDetailContent oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.isAnswerInputVisible && !oldWidget.isAnswerInputVisible) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _scrollToAnswerInput();
+      });
+    }
+  }
+
+  void _scrollToAnswerInput() {
+    final keyContext = _answerInputKey.currentContext;
+    if (keyContext != null) {
+      Scrollable.ensureVisible(
+        keyContext,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final bottomInset = MediaQuery.of(context).viewInsets.bottom;
+
     return RefreshIndicator(
       onRefresh: () async {
         context.read<QuestionDetailBloc>().add(const RefreshQuestion());
         await Future.delayed(const Duration(milliseconds: 500));
       },
       child: SingleChildScrollView(
+        controller: _scrollController,
         physics: const AlwaysScrollableScrollPhysics(),
-        padding: const EdgeInsets.all(AppSpacing.lg),
+        padding: EdgeInsets.fromLTRB(
+          AppSpacing.lg, AppSpacing.lg, AppSpacing.lg,
+          AppSpacing.lg + bottomInset,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Question header with author info
-            if (question.user != null)
+            if (widget.question.user != null)
               QuestionHeaderWidget(
-                user: question.user!,
-                createdAt: question.createdAt,
+                user: widget.question.user!,
+                createdAt: widget.question.createdAt,
               ),
             const SizedBox(height: AppSpacing.lg),
 
             // Question title and description
             QuestionContentWidget(
-              title: question.title,
-              description: question.description,
+              title: widget.question.title,
+              description: widget.question.description,
             ),
             const SizedBox(height: AppSpacing.lg),
 
             // Mini-map with location
             QuestionLocationMapWidget(
-              latitude: question.latitude,
-              longitude: question.longitude,
-              locationName: question.locationName,
+              latitude: widget.question.latitude,
+              longitude: widget.question.longitude,
+              locationName: widget.question.locationName,
             ),
             const SizedBox(height: AppSpacing.xl),
 
             // Answer input widget
-            if (isAnswerInputVisible)
+            if (widget.isAnswerInputVisible)
               AnswerInputWidget(
-                isSubmitting: isSubmittingAnswer,
+                key: _answerInputKey,
+                isSubmitting: widget.isSubmittingAnswer,
                 onSubmit: (content) {
                   context
                       .read<QuestionDetailBloc>()
@@ -208,8 +250,8 @@ class _QuestionDetailContent extends StatelessWidget {
 
             // Answers list
             AnswersListWidget(
-              answers: question.answers,
-              currentUserId: currentUserId,
+              answers: widget.question.answers,
+              currentUserId: widget.currentUserId,
             ),
             const SizedBox(height: 80), // Space for FAB
           ],
