@@ -605,6 +605,36 @@ class AppLocalizationsJa extends AppLocalizations {
   String get auth_continueWithApple => 'Appleで続ける';
 
   @override
+  String get location_serviceDisabledTitle => '位置情報サービスが無効です';
+
+  @override
+  String get location_serviceDisabledDesc =>
+      'TravelConnectは周辺の質問を表示するために位置情報が必要です。デバイスの位置情報サービスを有効にしてください。';
+
+  @override
+  String get location_requiredTitle => '位置情報が必要です';
+
+  @override
+  String get location_deniedPermanentlyDesc =>
+      'TravelConnectを使用するには位置情報が必要です。アプリの設定で位置情報へのアクセスを許可してください。';
+
+  @override
+  String get location_deniedDesc =>
+      'TravelConnectは周辺の質問を表示するために位置情報が必要です。位置情報へのアクセスを許可してください。';
+
+  @override
+  String get location_enableLocation => '位置情報を有効にする';
+
+  @override
+  String get location_openSettings => '設定を開く';
+
+  @override
+  String get location_allowLocation => '位置情報を許可する';
+
+  @override
+  String get location_retry => '再試行';
+
+  @override
   String get common_cancel => 'キャンセル';
 
   @override

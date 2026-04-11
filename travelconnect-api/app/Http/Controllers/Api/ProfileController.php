@@ -42,14 +42,20 @@ class ProfileController extends Controller
 
     public function uploadAvatar(UploadAvatarRequest $request): JsonResponse
     {
-        $avatarUrl = $this->storageService->uploadAvatar(
-            $request->file('avatar'),
-            auth()->user()
-        );
+        try {
+            $avatarUrl = $this->storageService->uploadAvatar(
+                $request->file('avatar'),
+                auth()->user()
+            );
 
-        return response()->json([
-            'avatar_url' => $avatarUrl,
-        ]);
+            return response()->json([
+                'avatar_url' => $avatarUrl,
+            ]);
+        } catch (\RuntimeException $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function registerFcmToken(RegisterFcmTokenRequest $request): Response

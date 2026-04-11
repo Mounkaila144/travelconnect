@@ -620,6 +620,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String get auth_continueWithApple => 'Continue with Apple';
 
   @override
+  String get location_serviceDisabledTitle => 'Location service disabled';
+
+  @override
+  String get location_serviceDisabledDesc =>
+      'TravelConnect needs your location to show questions around you. Please enable the location service on your device.';
+
+  @override
+  String get location_requiredTitle => 'Location required';
+
+  @override
+  String get location_deniedPermanentlyDesc =>
+      'TravelConnect needs your location to work. Please allow location access in the app settings.';
+
+  @override
+  String get location_deniedDesc =>
+      'TravelConnect needs your location to show questions around you. Please allow access to your location.';
+
+  @override
+  String get location_enableLocation => 'Enable location';
+
+  @override
+  String get location_openSettings => 'Open settings';
+
+  @override
+  String get location_allowLocation => 'Allow location';
+
+  @override
+  String get location_retry => 'Retry';
+
+  @override
   String get common_cancel => 'Cancel';
 
   @override

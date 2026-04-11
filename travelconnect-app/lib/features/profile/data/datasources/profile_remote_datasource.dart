@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
 
 import '../models/user_profile_model.dart';
 
@@ -50,10 +51,18 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       'avatar': await MultipartFile.fromFile(
         imageFile.path,
         filename: 'avatar.jpg',
+        contentType: MediaType('image', 'jpeg'),
       ),
     });
 
-    final response = await dio.post('/user/avatar', data: formData);
+    final response = await dio.post(
+      '/user/avatar',
+      data: formData,
+      options: Options(
+        sendTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(seconds: 30),
+      ),
+    );
     return response.data['avatar_url'] as String;
   }
 }

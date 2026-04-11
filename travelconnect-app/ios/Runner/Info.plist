@@ -39,9 +39,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<!-- Required permissions (Japanese) -->
+	<!-- Location permissions -->
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>現在地周辺の質問を表示するために位置情報を使用します</string>
+	<string>TravelConnect utilise votre position pour afficher les voyageurs à proximité. / TravelConnect uses your location to show nearby travelers.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>TravelConnect utilise votre position pour afficher les voyageurs à proximité. / TravelConnect uses your location to show nearby travelers.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>プロフィール写真をアップロードするために写真へのアクセスが必要です</string>
 	<key>NSCameraUsageDescription</key>

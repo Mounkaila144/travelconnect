@@ -1264,6 +1264,60 @@ abstract class AppLocalizations {
   /// **'Continuer avec Apple'**
   String get auth_continueWithApple;
 
+  /// No description provided for @location_serviceDisabledTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Service de localisation désactivé'**
+  String get location_serviceDisabledTitle;
+
+  /// No description provided for @location_serviceDisabledDesc.
+  ///
+  /// In fr, this message translates to:
+  /// **'TravelConnect a besoin de votre localisation pour vous montrer les questions autour de vous. Veuillez activer le service de localisation de votre appareil.'**
+  String get location_serviceDisabledDesc;
+
+  /// No description provided for @location_requiredTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Localisation requise'**
+  String get location_requiredTitle;
+
+  /// No description provided for @location_deniedPermanentlyDesc.
+  ///
+  /// In fr, this message translates to:
+  /// **'TravelConnect a besoin de votre localisation pour fonctionner. Veuillez autoriser l\'accès à la localisation dans les paramètres de l\'application.'**
+  String get location_deniedPermanentlyDesc;
+
+  /// No description provided for @location_deniedDesc.
+  ///
+  /// In fr, this message translates to:
+  /// **'TravelConnect a besoin de votre localisation pour vous montrer les questions autour de vous. Veuillez autoriser l\'accès à votre position.'**
+  String get location_deniedDesc;
+
+  /// No description provided for @location_enableLocation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Activer la localisation'**
+  String get location_enableLocation;
+
+  /// No description provided for @location_openSettings.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouvrir les paramètres'**
+  String get location_openSettings;
+
+  /// No description provided for @location_allowLocation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autoriser la localisation'**
+  String get location_allowLocation;
+
+  /// No description provided for @location_retry.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réessayer'**
+  String get location_retry;
+
   /// No description provided for @common_cancel.
   ///
   /// In fr, this message translates to:
