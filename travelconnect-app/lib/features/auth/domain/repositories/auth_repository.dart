@@ -6,6 +6,7 @@ abstract class AuthRepository {
   Future<String?> getSavedToken();
   Future<AuthResult?> restoreSession();
   Future<void> signOut();
+  Future<void> deleteAccount();
 }
 
 class AuthResult {

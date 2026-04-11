@@ -24,6 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignInWithAppleRequested>(_onSignInWithApple);
     on<SignOutRequested>(_onSignOut);
     on<CheckAuthStatus>(_onCheckAuthStatus);
+    on<DeleteAccountRequested>(_onDeleteAccount);
   }
 
   Future<void> _onSignInWithGoogle(
@@ -86,6 +87,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       // Always logout locally even if API call or cleanup fails
     }
     emit(const Unauthenticated());
+  }
+
+  Future<void> _onDeleteAccount(
+    DeleteAccountRequested event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(const AuthLoading());
+    try {
+      await authRepository.deleteAccount();
+      emit(const Unauthenticated());
+    } on DioException catch (e) {
+      emit(AuthError(_mapDioError(e)));
+    } catch (e) {
+      emit(const AuthError('Erreur lors de la suppression du compte.'));
+    }
   }
 
   Future<void> _onCheckAuthStatus(

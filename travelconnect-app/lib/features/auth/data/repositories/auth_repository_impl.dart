@@ -79,4 +79,15 @@ class AuthRepositoryImpl implements AuthRepository {
       // Ignore if user was not signed in with Google (e.g. Apple user)
     }
   }
+
+  @override
+  Future<void> deleteAccount() async {
+    await remoteDataSource.deleteAccount();
+    await localDataSource.deleteToken();
+    try {
+      await remoteDataSource.signOutGoogle();
+    } catch (_) {
+      // Ignore if user was not signed in with Google
+    }
+  }
 }

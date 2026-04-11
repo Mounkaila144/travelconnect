@@ -13,6 +13,8 @@ use App\Services\ProfileService;
 use App\Services\StorageService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
@@ -79,6 +81,44 @@ class ProfileController extends Controller
         $user->update(['notification_settings' => $updated]);
 
         return response()->json($updated);
+    }
+
+    public function deleteAccount(): JsonResponse
+    {
+        $user = auth()->user();
+
+        try {
+            DB::transaction(function () use ($user) {
+                // Soft-delete user's answers
+                $user->answers()->update(['is_deleted' => true]);
+
+                // Soft-delete user's questions
+                $user->questions()->update(['is_deleted' => true]);
+
+                // Delete notifications
+                DB::table('notifications')->where('user_id', $user->id)->delete();
+
+                // Delete ratings made by this user
+                DB::table('ratings')->where('user_id', $user->id)->delete();
+
+                // Revoke all tokens
+                $user->tokens()->delete();
+
+                // Delete the user
+                $user->delete();
+            });
+
+            Log::info('User account deleted', ['user_id' => $user->id]);
+
+            return response()->json(['message' => 'Account deleted successfully']);
+        } catch (\Throwable $e) {
+            Log::error('Account deletion failed', [
+                'user_id' => $user->id,
+                'error' => $e->getMessage(),
+            ]);
+
+            return response()->json(['message' => 'Account deletion failed'], 500);
+        }
     }
 
     public function setNotificationZone(SetNotificationZoneRequest $request): Response

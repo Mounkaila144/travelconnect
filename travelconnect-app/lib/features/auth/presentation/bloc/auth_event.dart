@@ -22,3 +22,7 @@ class SignOutRequested extends AuthEvent {
 class CheckAuthStatus extends AuthEvent {
   const CheckAuthStatus();
 }
+
+class DeleteAccountRequested extends AuthEvent {
+  const DeleteAccountRequested();
+}

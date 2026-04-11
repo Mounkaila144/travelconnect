@@ -24,6 +24,7 @@ Route::get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     Route::post('/auth/logout-all', [AuthController::class, 'logoutAll']);
+    Route::delete('/user/account', [ProfileController::class, 'deleteAccount']);
 });
 
 Route::middleware(['auth:sanctum', EnsureUserNotBanned::class])->group(function () {

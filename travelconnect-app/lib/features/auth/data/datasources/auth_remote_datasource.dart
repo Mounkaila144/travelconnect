@@ -16,6 +16,7 @@ abstract class AuthRemoteDataSource {
   Future<AppleSignInResult> getAppleCredentials();
   Future<void> signOutGoogle();
   Future<void> logout();
+  Future<void> deleteAccount();
 }
 
 class AppleSignInResult {
@@ -128,6 +129,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> logout() async {
     await dio.post('/auth/logout');
+  }
+
+  @override
+  Future<void> deleteAccount() async {
+    await dio.delete('/user/account');
   }
 }
 

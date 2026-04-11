@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelconnect_app/l10n/app_localizations.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/locale/locale_bloc.dart';
 import '../../../../core/locale/locale_event.dart';
@@ -15,6 +16,8 @@ import '../bloc/settings_bloc.dart';
 import '../bloc/settings_event.dart';
 import '../widgets/logout_confirmation_dialog.dart';
 import 'notification_settings_page.dart';
+
+const _baseUrl = 'https://travelconnect.ptrniger.com';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -70,7 +73,7 @@ class SettingsPage extends StatelessWidget {
                     title: Text(l10n.settings_privacy),
                     trailing: const Icon(Icons.chevron_right, color: AppColors.textTertiary),
                     onTap: () {
-                      _showComingSoon(context, l10n.settings_privacy);
+                      _openUrl('$_baseUrl/privacy');
                     },
                   ),
                 ],
@@ -214,7 +217,7 @@ class SettingsPage extends StatelessWidget {
                     title: Text(l10n.settings_helpAndSupport),
                     trailing: const Icon(Icons.chevron_right, color: AppColors.textTertiary),
                     onTap: () {
-                      _showComingSoon(context, l10n.settings_helpAndSupport);
+                      _openUrl('$_baseUrl/support');
                     },
                   ),
                   const Divider(height: 1, indent: AppSpacing.lg, endIndent: AppSpacing.lg),
@@ -223,7 +226,7 @@ class SettingsPage extends StatelessWidget {
                     title: Text(l10n.settings_termsOfUse),
                     trailing: const Icon(Icons.chevron_right, color: AppColors.textTertiary),
                     onTap: () {
-                      _showComingSoon(context, l10n.settings_termsOfUse);
+                      _openUrl('$_baseUrl/terms');
                     },
                   ),
                   const Divider(height: 1, indent: AppSpacing.lg, endIndent: AppSpacing.lg),
@@ -232,7 +235,7 @@ class SettingsPage extends StatelessWidget {
                     title: Text(l10n.settings_privacyPolicy),
                     trailing: const Icon(Icons.chevron_right, color: AppColors.textTertiary),
                     onTap: () {
-                      _showComingSoon(context, l10n.settings_privacyPolicy);
+                      _openUrl('$_baseUrl/privacy');
                     },
                   ),
                   const Divider(height: 1, indent: AppSpacing.lg, endIndent: AppSpacing.lg),
@@ -315,22 +318,28 @@ class SettingsPage extends StatelessWidget {
                 side: BorderSide(color: AppColors.error.withAlpha(50), width: 0.5),
               ),
               color: AppColors.surfaceWhite,
-              child: ListTile(
-                onTap: () => _showDeleteAccountDialog(context),
-                leading: Container(
-                  padding: const EdgeInsets.all(AppSpacing.sm),
-                  decoration: BoxDecoration(
-                    color: AppColors.error.withAlpha(25),
-                    borderRadius: AppRadius.smAll,
-                  ),
-                  child: const Icon(Icons.delete_outline, color: AppColors.error, size: 20),
-                ),
-                title: Text(
-                  l10n.settings_deleteAccount,
-                  style: theme.textTheme.titleSmall?.copyWith(
-                    color: AppColors.error,
-                  ),
-                ),
+              child: BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, state) {
+                  final isLoading = state is AuthLoading;
+
+                  return ListTile(
+                    onTap: isLoading ? null : () => _showDeleteAccountDialog(context),
+                    leading: Container(
+                      padding: const EdgeInsets.all(AppSpacing.sm),
+                      decoration: BoxDecoration(
+                        color: AppColors.error.withAlpha(25),
+                        borderRadius: AppRadius.smAll,
+                      ),
+                      child: const Icon(Icons.delete_outline, color: AppColors.error, size: 20),
+                    ),
+                    title: Text(
+                      l10n.settings_deleteAccount,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        color: AppColors.error,
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
             const SizedBox(height: AppSpacing.xxl),
@@ -351,14 +360,11 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  void _showComingSoon(BuildContext context, String feature) {
-    final l10n = AppLocalizations.of(context)!;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(l10n.settings_comingSoon(feature)),
-        duration: const Duration(seconds: 2),
-      ),
-    );
+  Future<void> _openUrl(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
   }
 
   void _showLanguagePicker(BuildContext context) {
@@ -463,22 +469,18 @@ class SettingsPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         title: Text(l10n.settings_deleteAccountConfirm),
         content: Text(l10n.settings_deleteAccountMessage),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pop(dialogContext),
             child: Text(l10n.common_cancel),
           ),
           TextButton(
             onPressed: () {
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(l10n.settings_deleteAccountComingSoon),
-                ),
-              );
+              Navigator.pop(dialogContext);
+              context.read<AuthBloc>().add(const DeleteAccountRequested());
             },
             style: TextButton.styleFrom(foregroundColor: AppColors.error),
             child: Text(l10n.common_delete),

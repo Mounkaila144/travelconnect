@@ -13,3 +13,7 @@ Route::get('/privacy', function () {
 Route::get('/support', function () {
     return view('support');
 })->name('support');
+
+Route::get('/terms', function () {
+    return view('terms');
+})->name('terms');
