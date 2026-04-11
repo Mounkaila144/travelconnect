@@ -77,6 +77,9 @@ class _AnswerInputWidgetState extends State<AnswerInputWidget> {
                 ),
                 const SizedBox(width: AppSpacing.sm),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(0, 52),
+                  ),
                   onPressed:
                       widget.isSubmitting || _controller.text.trim().isEmpty
                           ? null
