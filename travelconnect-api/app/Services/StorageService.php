@@ -32,10 +32,13 @@ class StorageService
         $filename = "avatars/{$user->id}_" . time() . '.jpg';
 
         try {
+            // Only delete old avatar if it's stored on OVH (starts with avatars/)
             if ($user->avatar_url) {
                 $oldPath = parse_url($user->avatar_url, PHP_URL_PATH);
                 $oldPath = ltrim($oldPath, '/');
-                Storage::disk('ovh')->delete($oldPath);
+                if (str_starts_with($oldPath, 'avatars/')) {
+                    Storage::disk('ovh')->delete($oldPath);
+                }
             }
 
             Storage::disk('ovh')->put($filename, (string) $image, 'public');
@@ -43,6 +46,7 @@ class StorageService
             Log::error('Avatar storage upload failed', [
                 'user_id' => $user->id,
                 'filename' => $filename,
+                'old_avatar_url' => $user->avatar_url,
                 'error' => $e->getMessage(),
             ]);
             throw new \RuntimeException('Storage upload failed: ' . $e->getMessage(), 0, $e);
